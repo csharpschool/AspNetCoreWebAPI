@@ -17,6 +17,6 @@ namespace AspNetCoreWebAPI.Controllers
 
             return Ok(model);
         }
-
+ 
     }
 }
