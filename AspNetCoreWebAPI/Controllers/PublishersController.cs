@@ -18,5 +18,15 @@ namespace AspNetCoreWebAPI.Controllers
             return Ok(_rep.GetPublishers());
         }
 
+        [HttpGet("{id}", Name = "GetPublisher")]
+        public IActionResult Get(int id, bool includeBooks = false)
+        {
+            var publisher = _rep.GetPublisher(id, includeBooks);
+
+            if (publisher == null) return NotFound();
+
+            return Ok(publisher);
+        }
+
     }
 }
