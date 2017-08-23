@@ -1,5 +1,6 @@
 ﻿using AspNetCoreWebAPI.Models;
 using AspNetCoreWebAPI.Services;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreWebAPI.Controllers
@@ -66,6 +67,37 @@ namespace AspNetCoreWebAPI.Controllers
             if (!publisherExists) return NotFound();
 
             _rep.UpdatePublisher(id, publisher);
+            _rep.Save();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, [FromBody]JsonPatchDocument<PublisherUpdateDTO> publisher)
+        {
+            if (publisher == null) return BadRequest();
+
+            var publisherToUpdate = _rep.GetPublisher(id);
+
+            if (publisherToUpdate == null) return NotFound();
+
+            var publisherPatch = new PublisherUpdateDTO()
+            {
+                Name = publisherToUpdate.Name,
+                Established = publisherToUpdate.Established
+            };
+
+            publisher.ApplyTo(publisherPatch, ModelState);
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (publisherPatch.Established < 1534)
+                ModelState.AddModelError("Established",
+                    "The oldest publishing house was founded in 1534.");
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            _rep.UpdatePublisher(id, publisherPatch);
             _rep.Save();
 
             return NoContent();
