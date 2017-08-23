@@ -61,5 +61,20 @@ namespace AspNetCoreWebAPI.Controllers
             }, bookToAdd);
         }
 
+        [HttpPut("{publisherId}/books/{id}")]
+        public IActionResult Put(int publisherId, int id, [FromBody]BookUpdateDTO book)
+        {
+            if (book == null) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var bookToUpdate = _rep.GetBook(publisherId, id);
+            if (bookToUpdate == null) return NotFound();
+
+            _rep.UpdateBook(publisherId, id, book);
+            _rep.Save();
+
+            return NoContent();
+        }
+
     }
 }
