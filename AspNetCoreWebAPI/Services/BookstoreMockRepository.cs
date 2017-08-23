@@ -2,6 +2,7 @@
 using System.Linq;
 using AspNetCoreWebAPI.Models;
 using AspNetCoreWebAPI.Data;
+using System;
 
 namespace AspNetCoreWebAPI.Services
 {
@@ -26,5 +27,12 @@ namespace AspNetCoreWebAPI.Services
             return publisher;
         }
 
+        public void AddPublisher(PublisherDTO publisher)
+        {
+            // For Demo purposes only: Get next id
+            var id = GetPublishers().Max(m => m.Id) + 1;
+            publisher.Id = id;
+            MockData.Current.Publishers.Add(publisher);
+        }
     }
 }
