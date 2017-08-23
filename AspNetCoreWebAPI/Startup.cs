@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using AspNetCoreWebAPI.Services;
+using AspNetCoreWebAPI.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreWebAPI
 {
@@ -21,7 +23,7 @@ namespace AspNetCoreWebAPI
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+            .AddJsonFile("appsettings.json", optional: true);
 
             if (env.IsDevelopment())
             {
@@ -35,6 +37,10 @@ namespace AspNetCoreWebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var conn = Configuration["connectionStrings:sqlConnection"];
+            services.AddDbContext<SqlDbContext>(options =>
+                options.UseSqlServer(conn));
 
             services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreMockRepository));
         }
