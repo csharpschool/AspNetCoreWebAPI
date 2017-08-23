@@ -10,5 +10,6 @@ namespace AspNetCoreWebAPI.Services
         void AddPublisher(PublisherDTO publisher);
         void UpdatePublisher(int id, PublisherUpdateDTO publisher);
         bool Save();
+        bool PublisherExists(int publisherId);
     }
 }

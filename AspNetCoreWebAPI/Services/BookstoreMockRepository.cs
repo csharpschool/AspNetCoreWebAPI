@@ -46,5 +46,10 @@ namespace AspNetCoreWebAPI.Services
             publisherToUpdate.Name = publisher.Name;
             publisherToUpdate.Established = publisher.Established;
         }
+
+        public bool PublisherExists(int publisherId)
+        {
+            return MockData.Current.Publishers.Count(p => p.Id.Equals(publisherId)).Equals(1);
+        }
     }
 }
