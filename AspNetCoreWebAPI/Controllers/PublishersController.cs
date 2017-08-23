@@ -103,5 +103,16 @@ namespace AspNetCoreWebAPI.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var publisherToDelete = _rep.GetPublisher(id);
+            if (publisherToDelete == null) return NotFound();
+
+            _rep.DeletePublisher(publisherToDelete);
+            _rep.Save();
+
+            return NoContent();
+        }
     }
 }
