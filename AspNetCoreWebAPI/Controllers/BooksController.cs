@@ -1,4 +1,5 @@
-﻿using AspNetCoreWebAPI.Services;
+﻿using AspNetCoreWebAPI.Models;
+using AspNetCoreWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,31 @@ namespace AspNetCoreWebAPI.Controllers
             if (book == null) return NotFound();
 
             return Ok(book);
+        }
+
+        [HttpPost("{publisherId}/books")]
+        public IActionResult Post(int publisherId, [FromBody]BookCreateDTO book)
+        {
+            if (book == null) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var publisherExists = _rep.PublisherExists(publisherId);
+            if (!publisherExists) return NotFound();
+
+            var bookToAdd = new BookDTO
+            {
+                PublisherId = publisherId,
+                Title = book.Title
+            };
+
+            _rep.AddBook(bookToAdd);
+            _rep.Save();
+
+            return CreatedAtRoute("GetBook", new
+            {
+                publisherId = publisherId,
+                id = bookToAdd.Id
+            }, bookToAdd);
         }
 
     }
