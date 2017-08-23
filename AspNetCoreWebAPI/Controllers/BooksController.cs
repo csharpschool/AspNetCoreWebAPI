@@ -1,5 +1,6 @@
 ﻿using AspNetCoreWebAPI.Models;
 using AspNetCoreWebAPI.Services;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -71,6 +72,32 @@ namespace AspNetCoreWebAPI.Controllers
             if (bookToUpdate == null) return NotFound();
 
             _rep.UpdateBook(publisherId, id, book);
+            _rep.Save();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{publisherId}/books/{id}")]
+        public IActionResult Patch(int publisherId, int id, [FromBody]JsonPatchDocument<BookUpdateDTO> book)
+        {
+            if (book == null) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var bookToUpdate = _rep.GetBook(publisherId, id);
+            if (bookToUpdate == null) return NotFound();
+
+            var bookToPatch =
+                new BookUpdateDTO()
+                {
+                    PublisherId = bookToUpdate.PublisherId,
+                    Title = bookToUpdate.Title
+                };
+
+            book.ApplyTo(bookToPatch, ModelState);
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            _rep.UpdateBook(publisherId, id, bookToPatch);
             _rep.Save();
 
             return NoContent();
