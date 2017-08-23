@@ -34,5 +34,10 @@ namespace AspNetCoreWebAPI.Services
             publisher.Id = id;
             MockData.Current.Publishers.Add(publisher);
         }
+
+        public bool Save()
+        {
+            return true;
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace AspNetCoreWebAPI.Services
         IEnumerable<PublisherDTO> GetPublishers();
         PublisherDTO GetPublisher(int publisherId, bool includeBooks = false);
         void AddPublisher(PublisherDTO publisher);
+        bool Save();
     }
 }
