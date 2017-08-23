@@ -80,5 +80,14 @@ namespace AspNetCoreWebAPI.Services
                 b.PublisherId.Equals(publisherId) &&
                 b.Id.Equals(bookId));
         }
+
+        public void AddBook(BookDTO book)
+        {
+            // For Demo purposes only: Get next id
+            var bookId = MockData.Current.Books.Max(m => m.Id) + 1;
+            book.Id = bookId;
+
+            MockData.Current.Books.Add(book);
+        }
     }
 }
