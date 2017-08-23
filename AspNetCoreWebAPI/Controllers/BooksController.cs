@@ -16,5 +16,14 @@ namespace AspNetCoreWebAPI.Controllers
         {
             _rep = rep;
         }
+
+        [HttpGet("{publisherId}/books")]
+        public IActionResult Get(int publisherId)
+        {
+            var books = _rep.GetBooks(publisherId);
+
+            return Ok(books);
+        }
+
     }
 }
