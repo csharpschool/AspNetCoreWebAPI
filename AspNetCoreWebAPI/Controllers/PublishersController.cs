@@ -51,5 +51,25 @@ namespace AspNetCoreWebAPI.Controllers
             return CreatedAtRoute("GetPublisher", new { id = publisherToAdd.Id }, publisherToAdd);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody]PublisherUpdateDTO publisher)
+        {
+            if (publisher == null) return BadRequest();
+
+            if (publisher.Established < 1534)
+                ModelState.AddModelError("Established",
+                    "The oldest publishing house was founded in 1534.");
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var publisherExists = _rep.PublisherExists(id);
+            if (!publisherExists) return NotFound();
+
+            _rep.UpdatePublisher(id, publisher);
+            _rep.Save();
+
+            return NoContent();
+        }
+
     }
 }
