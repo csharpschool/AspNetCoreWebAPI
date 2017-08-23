@@ -73,5 +73,12 @@ namespace AspNetCoreWebAPI.Services
             return MockData.Current.Books.Where(b => b.PublisherId.Equals(publisherId));
 
         }
+
+        public BookDTO GetBook(int publisherId, int bookId)
+        {
+            return MockData.Current.Books.FirstOrDefault(b =>
+                b.PublisherId.Equals(publisherId) &&
+                b.Id.Equals(bookId));
+        }
     }
 }

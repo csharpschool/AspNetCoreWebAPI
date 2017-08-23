@@ -15,5 +15,6 @@ namespace AspNetCoreWebAPI.Services
 
         void DeleteBook(BookDTO book);
         IEnumerable<BookDTO> GetBooks(int publisherId);
+        BookDTO GetBook(int publisherId, int bookId);
     }
 }
