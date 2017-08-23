@@ -49,7 +49,7 @@ namespace AspNetCoreWebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStatusCodePages();
+            //app.UseStatusCodePages();
 
             app.UseMvc();
             //app.Run(async (context) =>
