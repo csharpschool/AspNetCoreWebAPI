@@ -1,4 +1,5 @@
-﻿using AspNetCoreWebAPI.Services;
+﻿using AspNetCoreWebAPI.Models;
+using AspNetCoreWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreWebAPI.Controllers
@@ -26,6 +27,28 @@ namespace AspNetCoreWebAPI.Controllers
             if (publisher == null) return NotFound();
 
             return Ok(publisher);
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] PublisherCreateDTO publisher)
+        {
+            if (publisher == null) return BadRequest();
+
+            if (publisher.Established < 1534)
+                ModelState.AddModelError("Established", "The first publishing house was founded in 1534.");
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var publisherToAdd = new PublisherDTO
+            {
+                Established = publisher.Established,
+                Name = publisher.Name
+            };
+
+            _rep.AddPublisher(publisherToAdd);
+            _rep.Save();
+
+            return CreatedAtRoute("GetPublisher", new { id = publisherToAdd.Id }, publisherToAdd);
         }
 
     }
