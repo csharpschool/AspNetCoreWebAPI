@@ -67,5 +67,11 @@ namespace AspNetCoreWebAPI.Services
 
             MockData.Current.Publishers.Remove(publisher);
         }
+
+        public IEnumerable<BookDTO> GetBooks(int publisherId)
+        {
+            return MockData.Current.Books.Where(b => b.PublisherId.Equals(publisherId));
+
+        }
     }
 }
