@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using AspNetCoreWebAPI.Services;
 
 namespace AspNetCoreWebAPI
 {
@@ -34,6 +35,8 @@ namespace AspNetCoreWebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreMockRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
