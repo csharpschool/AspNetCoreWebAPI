@@ -2,7 +2,6 @@
 using System.Linq;
 using AspNetCoreWebAPI.Models;
 using AspNetCoreWebAPI.Data;
-using System;
 
 namespace AspNetCoreWebAPI.Services
 {
@@ -50,6 +49,11 @@ namespace AspNetCoreWebAPI.Services
         public bool PublisherExists(int publisherId)
         {
             return MockData.Current.Publishers.Count(p => p.Id.Equals(publisherId)).Equals(1);
+        }
+
+        public void DeleteBook(BookDTO book)
+        {
+            MockData.Current.Books.Remove(book);
         }
     }
 }

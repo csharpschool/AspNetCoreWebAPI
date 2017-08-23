@@ -11,5 +11,7 @@ namespace AspNetCoreWebAPI.Services
         void UpdatePublisher(int id, PublisherUpdateDTO publisher);
         bool Save();
         bool PublisherExists(int publisherId);
+
+        void DeleteBook(BookDTO book);
     }
 }
