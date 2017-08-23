@@ -43,6 +43,14 @@ namespace AspNetCoreWebAPI
                 options.UseSqlServer(conn));
 
             services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreMockRepository));
+
+            AutoMapper.Mapper.Initialize(config =>
+            {
+                config.CreateMap<Entities.Book, Models.BookDTO>();
+                config.CreateMap<Models.BookDTO, Entities.Book>();
+                config.CreateMap<Entities.Publisher, Models.PublisherDTO>();
+                config.CreateMap<Models.PublisherDTO, Entities.Publisher>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
