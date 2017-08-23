@@ -39,5 +39,12 @@ namespace AspNetCoreWebAPI.Services
         {
             return true;
         }
+
+        public void UpdatePublisher(int id, PublisherUpdateDTO publisher)
+        {
+            var publisherToUpdate = GetPublisher(id);
+            publisherToUpdate.Name = publisher.Name;
+            publisherToUpdate.Established = publisher.Established;
+        }
     }
 }
