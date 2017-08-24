@@ -51,6 +51,10 @@ namespace AspNetCoreWebAPI
                 config.CreateMap<Models.BookDTO, Entities.Book>();
                 config.CreateMap<Entities.Publisher, Models.PublisherDTO>();
                 config.CreateMap<Models.PublisherDTO, Entities.Publisher>();
+                config.CreateMap<Models.PublisherUpdateDTO, Entities.Publisher>();
+                config.CreateMap<Entities.Publisher, Models.PublisherUpdateDTO>();
+                config.CreateMap<Models.BookUpdateDTO, Entities.Book>();
+                config.CreateMap<Entities.Book, Models.BookUpdateDTO>();
             });
         }
 
