@@ -42,7 +42,7 @@ namespace AspNetCoreWebAPI
             services.AddDbContext<SqlDbContext>(options =>
                 options.UseSqlServer(conn));
 
-            services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreMockRepository));
+            services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreSqlRepository));
 
             AutoMapper.Mapper.Initialize(config =>
             {
