@@ -1,0 +1,1378 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ASP.NET Core 1.1 Web API",
+		"_postman_id": "7a2fdf0f-c031-8c9f-2756-d99c54ff6417",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Chapter 2",
+			"description": "",
+			"item": [
+				{
+					"name": "GET Request to TestController",
+					"request": {
+						"url": "http://localhost:55555/api/test",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter 4",
+			"description": "",
+			"item": [
+				{
+					"name": "GET Request to TestController (with model)",
+					"request": {
+						"url": "http://localhost:55555/api/test",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter 7",
+			"description": "",
+			"item": [
+				{
+					"name": "GET Publishers",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Publisher (Non Existing)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/5",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Publisher (Without books)",
+					"request": {
+						"url": {
+							"raw": "http://localhost:55555/api/publishers/1?includeBooks=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55555",
+							"path": [
+								"api",
+								"publishers",
+								"1"
+							],
+							"query": [
+								{
+									"key": "includeBooks",
+									"value": "false",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Publisher (With books)",
+					"request": {
+						"url": {
+							"raw": "http://localhost:55555/api/publishers/1?includeBooks=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55555",
+							"path": [
+								"api",
+								"publishers",
+								"1"
+							],
+							"query": [
+								{
+									"key": "includeBooks",
+									"value": "true",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Add Publisher (Without request body data)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Add Publisher (Wrong year)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Publishing House 3\",\r\n    \"established\": 1055\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Add Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Publishing House 3\",\r\n    \"established\": 2017\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Verify Added Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET First Publisher (id = 1)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update the First Publisher (id = 1)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Publishing House 11\",\r\n    \"established\": 2018\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Updated Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET First Publisher (id = 1)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/established\",\r\n        \"value\": \"1756\"\r\n    }\r\n]\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET The Updated Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Publishers",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Publisher (id = 1)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Publishers After Delete",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter 8",
+			"description": "",
+			"item": [
+				{
+					"name": "GET A Publisher's Books",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Book From a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/4",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET A Non-existitng Book for a Publisher (wrong book id)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/40",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET A Non-existitng Book for a Publisher (wrong publisher id)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/100/books/4",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET A Publisher's Books",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Adding a new books for a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"New Book\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET A Publisher's Books After Adding a Book",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET a Publisher's Book (bookId=2)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Publisher's Book (bookId=2)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Altered Title\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET A Publisher's Book After Update",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET A Publisher's Book (bookId=2)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Book for a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/title\",\r\n        \"value\": \"The patched title\"\r\n    }\r\n]\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET a Publisher's Partially Updated Book",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET A  Publisher's Book Before Deleting It",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE a Publisher's Book",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Try to Fetch the Deleted Book",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter 10",
+			"description": "",
+			"item": [
+				{
+					"name": "GET Fetching All Publishers",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetching one Publisher (id = 1)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetching a Publisher with Its Related Books",
+					"request": {
+						"url": {
+							"raw": "http://localhost:55555/api/publishers/1?includeBooks=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55555",
+							"path": [
+								"api",
+								"publishers",
+								"1"
+							],
+							"query": [
+								{
+									"key": "includeBooks",
+									"value": "true",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetching a Non-Existing Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1000",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Adding a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"Name\": \"Publishing House 3\",\r\n\t\"Established\": \"2017\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Adding a Publisher (Without Request Body)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Adding a Publisher (Wrong Year)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"Name\": \"Publishing House 4\",\r\n\t\"Established\": \"1210\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetch the Added Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"Name\": \"Publishing House 4\",\r\n\t\"Established\": \"2016\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Publisher (Without Requesr Body)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Publisher (Worng Year)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"Name\": \"Publishing House 4\",\r\n\t\"Established\": \"1210\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Publisher (Wrong Publisher Id)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3000",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"Name\": \"Publishing House 4\",\r\n\t\"Established\": \"2016\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetch All Publishers",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/name\",\r\n        \"value\": \"Patched Publisher\"\r\n    }\r\n]\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Publisher (Without Request Body)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Publisher (Wrong Year)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/established\",\r\n        \"value\": \"1000\"\r\n    }\r\n]\r\n\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Publisher (Non-Existing Publisher Id)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3000",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/established\",\r\n        \"value\": \"2016\"\r\n    }\r\n]\r\n\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetch All Publishers",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Deleting a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetching All Books Related to a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetching a Specific Book Related to a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetching a Non-Existing Book",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/1000",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Adding a Book to a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"New Title\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetch All Books for a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Try to Add a book to a Non-Existing Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1000/books",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"New Title\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Try to Add a Book for a Non-Existing Publisher (Without Request Body)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1000/books",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Book",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Altered Title\",\r\n    \"publisherId\": 1\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Book (Without Request Body)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Book (Non-Existing Publisher Id)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1000/books/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Altered Title\",\r\n    \"publisherId\": 1\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a Book (Non-Existing Book Id)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/5000",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Altered Title\",\r\n    \"publisherId\": 1\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Book",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/5",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/title\",\r\n        \"value\": \"Patched Book\"\r\n    }\r\n]\r\n\r\n\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Book (Non-Existing Publisher Id)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1000/books/5",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/title\",\r\n        \"value\": \"Patched Book\"\r\n    }\r\n]\r\n\r\n\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Book (Non-Existing Book Id)",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/5000",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/title\",\r\n        \"value\": \"Patched Book\"\r\n    }\r\n]\r\n\r\n\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Deleting a Book",
+					"request": {
+						"url": "http://localhost:55555/api/publishers/1/books/5",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter 12 (Generic)",
+			"description": "",
+			"item": [
+				{
+					"name": "GET Fetch All Publishers (Generic)",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetch All Books for a Publisher (Generic)",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/1/books",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetch a Single Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetching a Single Publisher (without Books)",
+					"request": {
+						"url": {
+							"raw": "http://localhost:55555/api/genpublishers/1?includeRelatedEntities=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55555",
+							"path": [
+								"api",
+								"genpublishers",
+								"1"
+							],
+							"query": [
+								{
+									"key": "includeRelatedEntities",
+									"value": "false",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fetching a Single Publisher (With Books)",
+					"request": {
+						"url": {
+							"raw": "http://localhost:55555/api/genpublishers/1?includeRelatedEntities=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55555",
+							"path": [
+								"api",
+								"genpublishers",
+								"1"
+							],
+							"query": [
+								{
+									"key": "includeRelatedEntities",
+									"value": "true",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Adding a Publisher (Generic)",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Added Publishing House\",\r\n    \"established\": 2018\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST Adding a Book to a Publisher (Generic)",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/1/books",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Added Book\"\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update a Publisher (Generic)",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Updated Publishing House 1\",\r\n    \"established\": 1821\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Updating a book for a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/2/books/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Updated Book 1\",\r\n    \"publisherId\": 2\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Update a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/1",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/name\",\r\n        \"value\": \"Patched Publishing House 1\"\r\n    }\r\n]\r\n\r\n\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Partially Updating a Book for a Publisher",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/2/books/1",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\":\"/title\",\r\n        \"value\": \"Patched Title\"\r\n    }\r\n]\r\n\r\n\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Deleting a Publisher and All Its Books",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/1",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Deleting a Book for a Customer",
+					"request": {
+						"url": "http://localhost:55555/api/genpublishers/2/books/1",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
