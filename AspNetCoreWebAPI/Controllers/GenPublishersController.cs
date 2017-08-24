@@ -2,6 +2,7 @@
 using AspNetCoreWebAPI.Models;
 using AspNetCoreWebAPI.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -65,6 +66,28 @@ namespace AspNetCoreWebAPI.Controllers
             if (entity == null) return NotFound();
 
             Mapper.Map(DTO, entity);
+
+            if (!_rep.Save()) return StatusCode(500,
+                "A problem happened while handling your request.");
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, [FromBody]JsonPatchDocument<PublisherUpdateDTO> DTO)
+        {
+            if (DTO == null) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var entity = _rep.Get<Publisher>(id);
+            if (entity == null) return NotFound();
+
+            var entityToPatch = Mapper.Map<PublisherUpdateDTO>(entity);
+            DTO.ApplyTo(entityToPatch, ModelState);
+            TryValidateModel(entityToPatch);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            Mapper.Map(entityToPatch, entity);
 
             if (!_rep.Save()) return StatusCode(500,
                 "A problem happened while handling your request.");
