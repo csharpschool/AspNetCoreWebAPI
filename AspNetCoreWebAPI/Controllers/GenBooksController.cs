@@ -99,5 +99,20 @@ namespace AspNetCoreWebAPI.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{publisherId}/books/{id}")]
+        public IActionResult Delete(int publisherId, int id)
+        {
+            if (!_rep.Exists<Book>(id)) return NotFound();
+
+            var entityToDelete = _rep.Get<Book>(id);
+
+            _rep.Delete(entityToDelete);
+
+            if (!_rep.Save()) return StatusCode(500,
+                "A problem occurred while handling your request.");
+
+            return NoContent();
+        }
+
     }
 }
