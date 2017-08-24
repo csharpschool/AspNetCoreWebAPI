@@ -1,4 +1,5 @@
 ﻿using AspNetCoreWebAPI.Entities;
+using System.Collections.Generic;
 
 namespace AspNetCoreWebAPI.Services
 {
@@ -10,6 +11,10 @@ namespace AspNetCoreWebAPI.Services
             _db = db;
         }
 
+        public IEnumerable<TEntity> Get<TEntity>() where TEntity : class
+        {
+            return _db.Set<TEntity>();
+        }
 
     }
 }
