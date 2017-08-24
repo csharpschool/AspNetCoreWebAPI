@@ -51,6 +51,11 @@ namespace AspNetCoreWebAPI.Services
             _db.Add<TEntity>(item);
         }
 
+        public bool Exists<TEntity>(int id) where TEntity : class
+        {
+            return _db.Set<TEntity>().Find(new object[] { id }) != null;
+        }
+        
         public bool Save()
         {
             return _db.SaveChanges() >= 0;
