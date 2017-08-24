@@ -46,6 +46,11 @@ namespace AspNetCoreWebAPI.Services
             return entity;
         }
 
+        public void Add<TEntity>(TEntity item) where TEntity : class
+        {
+            _db.Add<TEntity>(item);
+        }
+
         public bool Save()
         {
             return _db.SaveChanges() >= 0;
