@@ -40,5 +40,24 @@ namespace AspNetCoreWebAPI.Controllers
             return Ok(DTO);
         }
 
+        [HttpPost("{publisherId}/books")]
+        public IActionResult Post(int publisherId, [FromBody]BookDTO DTO)
+        {
+            if (DTO == null) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var itemToCreate = Mapper.Map<Book>(DTO);
+            itemToCreate.PublisherId = publisherId;
+            _rep.Add(itemToCreate);
+
+            if (!_rep.Save()) return StatusCode(500,
+                "A problem occurred while handling your request.");
+
+            var createdDTO = Mapper.Map<BookDTO>(itemToCreate);
+
+            return CreatedAtRoute("GetGenericBook",
+                new { id = createdDTO.Id }, createdDTO);
+        }
+
     }
 }
