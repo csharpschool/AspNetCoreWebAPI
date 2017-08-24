@@ -46,5 +46,10 @@ namespace AspNetCoreWebAPI.Services
             return entity;
         }
 
+        public bool Save()
+        {
+            return _db.SaveChanges() >= 0;
+        }
+
     }
 }
