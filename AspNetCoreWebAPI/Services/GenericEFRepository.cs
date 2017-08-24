@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System;
 
 namespace AspNetCoreWebAPI.Services
 {
@@ -49,6 +50,11 @@ namespace AspNetCoreWebAPI.Services
         public void Add<TEntity>(TEntity item) where TEntity : class
         {
             _db.Add<TEntity>(item);
+        }
+
+        public void Delete<TEntity>(TEntity item) where TEntity : class
+        {
+            _db.Set<TEntity>().Remove(item);
         }
 
         public bool Exists<TEntity>(int id) where TEntity : class
