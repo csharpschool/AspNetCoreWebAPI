@@ -43,7 +43,7 @@ namespace AspNetCoreWebAPI
                 options.UseSqlServer(conn));
 
             services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreSqlRepository));
-
+             
             AutoMapper.Mapper.Initialize(config =>
             {
                 config.CreateMap<Entities.Book, Models.BookDTO>();
